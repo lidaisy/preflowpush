@@ -1,9 +1,9 @@
 #include <vector>
 #include <map>
-#include "Node.h"
-#include "Graph.h"
-#include "Arc.h"
-#include "Screenshot.cpp"
+#include "node.h"
+#include "graph.h"
+#include "arc.h"
+#include "screenshot.h"
 
 Graph::Graph(std::vector<Arc*> arcs, std::vector<Node*> nodes, Node* s, Node* t){
     start = s;
@@ -45,7 +45,7 @@ void Graph::push(Arc* arc, bool init){
             residualArcs[arc] = false;
         }
         if(residualArcs[arc->reverse] == false){
-            residualArcs[arc->reverse] == true;
+            residualArcs[arc->reverse] = true;
         }
     }
     else{ // arc->flow must be < capacity since amount > 0
@@ -55,7 +55,7 @@ void Graph::push(Arc* arc, bool init){
             residualArcs[arc] = false;
         }
         if(residualArcs[arc->reverse] == false){
-            residualArcs[arc->reverse] == true;
+            residualArcs[arc->reverse] = true;
         }
     }
 }

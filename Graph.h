@@ -1,7 +1,8 @@
 #ifndef _GRAPH_H_
 #define _GRAPH_H_
 
-#include "Arc.h"
+#include "arc.h"
+#include "screenshot.h"
 #include <vector>
 #include <map>
 

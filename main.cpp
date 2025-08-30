@@ -8,17 +8,14 @@
 #include <string>
 #include <vector>
 #include <set>
-#include "Node.h"
-#include "Arc.h"
-#include "Graph.h"
-#include "Screenshot.cpp"
+#include "node.h"
+#include "arc.h"
+#include "graph.h"
+#include "screenshot.h"
 
 int main(){
-    // Create an input file stream object named 'file' and
-    // open the file "GFG.txt".
     std::ifstream file("input.txt");
 
-    // String to store each line of the file.
     std::string line;
 
     std::vector<Node*> nodes;
@@ -84,6 +81,7 @@ int main(){
                 file<<arc[0]<<","<<arc[1]<<","<<arc[2]<<std::endl;
             }
         }
+        delete graph;
     }
     else {
         std::cerr << "Unable to open file!" << std::endl;

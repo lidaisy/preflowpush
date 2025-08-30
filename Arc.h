@@ -1,6 +1,6 @@
 #ifndef _ARC_H_
 #define _ARC_H_
-#include "Node.h"
+#include "node.h"
 
 class Arc{
     public:

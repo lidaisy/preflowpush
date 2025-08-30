@@ -1,4 +1,4 @@
-#include "Arc.h"
+#include "arc.h"
 
 Arc::Arc(Node* h, Node* t, bool forward, int cap){
     head = h;
