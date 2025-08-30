@@ -21,6 +21,8 @@ class Graph{
     Graph(std::vector<Arc*> arcs, std::vector<Node*> nodes, Node* s, Node* t);
 
     std::vector<Screenshot*> run(bool trackSteps = false);
+
+    ~Graph();
 };
 
 #endif

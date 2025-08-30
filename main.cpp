@@ -1,8 +1,6 @@
-// collect head, tail, capacity
-// create nodes, arcs here and pass into graph
-// don't need forward & allArcs
-
-// create step by step graphs for python to print
+// add make file
+// write python portioin
+// write script
 
 #include <fstream>
 #include <sstream>
@@ -72,23 +70,23 @@ int main(){
         std::vector<Screenshot*> screenshots = graph->run(false);
         int index = 0;
 
+        std::ofstream file("output.txt");
+
         for(Screenshot* ss : screenshots){
-            std::cout << index << std::endl;
+            file << index << std::endl;
+            file << ss->op << std::endl;
             for(int h : ss->heights){
-                std::cout<<h<<",";
+                file<<h<<",";
             }
-            std::cout << std::endl;
-            
+            file << std::endl;
+
             for(std::vector<int> arc : ss->arcInfo){
-                std::cout<<arc[0]<<","<<arc[1]<<","<<arc[2]<<","<<std::endl;
+                file<<arc[0]<<","<<arc[1]<<","<<arc[2]<<std::endl;
             }
         }
     }
     else {
-        // Print an error message to the standard error
-        // stream if the file cannot be opened.
         std::cerr << "Unable to open file!" << std::endl;
     }
-
     return 0;
 }

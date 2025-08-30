@@ -126,3 +126,12 @@ std::vector<Screenshot*> Graph::run(bool trackSteps){
     }
     return ss;
 }
+
+Graph::~Graph(){
+    for(Node* node : nodes){
+        delete node;
+    }
+    for(Arc* arc : arcs){
+        delete arc;
+    }
+}
