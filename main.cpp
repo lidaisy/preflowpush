@@ -1,7 +1,3 @@
-// add make file
-// write python portioin
-// write script
-
 #include <fstream>
 #include <sstream>
 #include <iostream>
@@ -75,17 +71,20 @@ int main(){
 
         std::ofstream file("output.txt");
 
+        // print number of screenshots, number of nodes, and number of arcs
+        file << screenshots.size() << " " << nodes.size() << " "<< arcs.size() << std::endl;
+
         for(Screenshot* ss : screenshots){
-            file << index << std::endl;
             file << ss->op << std::endl;
             for(int h : ss->heights){
-                file<<h<<",";
+                file<<h<<" ";
             }
             file << std::endl;
 
             for(std::vector<int> arc : ss->arcInfo){
-                file<<arc[0]<<","<<arc[1]<<","<<arc[2]<<std::endl;
+                file<<arc[0]<<" "<<arc[1]<<" "<<arc[2]<<std::endl;
             }
+            index++;
         }
         for(Screenshot* s : screenshots){
             delete s;
