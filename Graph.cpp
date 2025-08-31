@@ -5,9 +5,12 @@
 #include "arc.h"
 #include "screenshot.h"
 
+#include <iostream>
+
 Graph::Graph(std::vector<Arc*> arcs, std::vector<Node*> nodes, Node* s, Node* t){
     start = s;
     tail = t;
+    this->nodes = nodes;
 
     for(Arc* arc : arcs){
         this->arcs.push_back(arc);
@@ -32,7 +35,6 @@ void Graph::initialize(){
 }
 
 void Graph::push(Arc* arc, bool init){
-    // this is wrong. backward arcs never have flow. always update forward arcs
     int amount = init ? arc->capacity : (arc->isForward ? std::min(arc->tail->excess, arc->capacity - arc->flow) : std::min(arc->tail->excess, arc->reverse->flow));
 
     arc->head->excess += amount;
@@ -65,6 +67,9 @@ std::vector<Screenshot*> Graph::run(bool trackSteps){
 
     initialize();
 
+    if(trackSteps){
+        ss.push_back(new Screenshot{nodes, arcs, -1});
+    }
     bool updated = true;
 
     while(updated){
@@ -74,7 +79,7 @@ std::vector<Screenshot*> Graph::run(bool trackSteps){
             while(node->index != tail->index && node->excess > 0){
                 bool shouldRelabel = true;
                 int h_tail = node->height;
-                std::vector<Arc*> outArcs = {};
+                std::vector<Arc*> outArcs;
                 
                 for(Arc* arc : arcs){
                     if(residualArcs[arc] && arc->hasTail(node)){

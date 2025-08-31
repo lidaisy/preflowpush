@@ -23,13 +23,18 @@ int main(){
 
     if (file.is_open()) {
         int s, t;
-        file >> s >> t;
+        getline(file, line);
+        std::istringstream ss(line);
+        ss >> s >> t;
 
         Node* startNode = new Node{s};
         Node* endNode = new Node{t};
 
+        nodes.push_back(startNode);
+        nodes.push_back(endNode);
+
         while (getline(file, line)) {
-            std::istringstream iss(line);
+            std::istringstream iss {line};
             int tail, head, capacity;
 
             if (!(iss >> tail >> head >> capacity)){
@@ -64,7 +69,8 @@ int main(){
         file.close();
 
         Graph* graph = new Graph(arcs, nodes, startNode, endNode);
-        std::vector<Screenshot*> screenshots = graph->run(false);
+        std::vector<Screenshot*> screenshots = graph->run(true);
+
         int index = 0;
 
         std::ofstream file("output.txt");
@@ -80,6 +86,9 @@ int main(){
             for(std::vector<int> arc : ss->arcInfo){
                 file<<arc[0]<<","<<arc[1]<<","<<arc[2]<<std::endl;
             }
+        }
+        for(Screenshot* s : screenshots){
+            delete s;
         }
         delete graph;
     }
